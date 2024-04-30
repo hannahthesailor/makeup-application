@@ -37,7 +37,8 @@ const Navbar = () => {
                     <li className='font-bold text-3xl p-8'>
                         <Link to="/wishListItems">Wish List Items</Link>
                         </li>
-                    <li className='font-bold text-3xl p-8'>Login</li>
+                    <li className='font-bold text-3xl p-8'>
+                        <Link to="/Logins">Login</Link></li>
                 </ul>
             </div>
         </div>

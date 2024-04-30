@@ -7,6 +7,7 @@ import Discover from './components/Discover.jsx';
 import Products from './components/Products.jsx';
 import Reviews from './components/Reviews.jsx';
 import WishListItem from './components/WishListItems.jsx';
+import Logins from './components/Logins.jsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/wishListItems" element={<WishListItem />} />
+          <Route path="/logins" element={<Logins />} />
         </Routes>
       </div>
     </BrowserRouter>
