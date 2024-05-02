@@ -44,12 +44,12 @@ if __name__ == '__main__':
         db.session.add_all([product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13, product14, product15])
         db.session.commit()
 
-        user1 = User(name='Sara Johnson', username='skincaresara', password_hash='')
-        user2 = User(name='Erika Smith', username='erikaloveslipstick', password_hash='')
-        user3 = User(name='Savannah Sanders', username='apizzaroll', password_hash='')
-        user4 = User(name='Mellisa Henderson', username='melskinfulencer', password_hash='')
+        user1 = User(name='Sara Johnson', username='skincaresara', password_hash='1234')
+        user2 = User(name='Erika Smith', username='erikaloveslipstick', password_hash='1234')
+        user3 = User(name='Savannah Sanders', username='apizzaroll', password_hash='1234')
+        user4 = User(name='Mellisa Henderson', username='melskinfulencer', password_hash='1234')
 
-        db.session.add_All([user1, user2, user3, user4])
+        db.session.add_all([user1, user2, user3, user4])
         db.session.commit()
 
         review1 = Review(rating='5', text='Wow, this mascara is amazing! It lengthens and volumizes my lashes without clumping', product=product2, user=user4)

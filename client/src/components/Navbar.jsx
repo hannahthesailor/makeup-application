@@ -39,6 +39,8 @@ const Navbar = () => {
                         </li>
                     <li className='font-bold text-3xl p-8'>
                         <Link to="/Logins">Login</Link></li>
+                        <li className='font-bold text-3xl p-8'>
+                        <Link to="/NewReviewForm">Leave A Review</Link></li>
                 </ul>
             </div>
         </div>

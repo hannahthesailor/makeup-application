@@ -1,5 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
 
 from config import db
 
@@ -14,9 +15,9 @@ class Product(db.Model, SerializerMixin):
     image = db.Column(db.String, nullable=False)
 
 
-    reviews = db.relationship('Review', back_poplates='product')
+    reviews = db.relationship('Review', back_populates='product')
 
-    wishlist_item = db.relationship('Wishlist_Item', back_populates='product')
+    wishlist_items = db.relationship('Wishlist_Item', back_populates='product')
 
 
 class Review(db.Model, SerializerMixin):
@@ -40,11 +41,17 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     username = db.Column(db.String(25), unique=True)
     password_hash = db.Column(db.String, nullable=False)
-    
 
-    reviews = db.relationship('Review', back_poplates='user')
+
+    reviews = db.relationship('Review', back_populates='user')
 
     wishlist_items = db.relationship('Wishlist_Item', back_populates='user')
+
+    @validates('username')
+    def validate_username(self, key, username):
+        if len(username) > 25:
+            raise ValueError("Username cannot be longer than 25 characters.")
+        return username
 
 
 class  Wishlist_Item(db.Model, SerializerMixin):
@@ -58,4 +65,6 @@ class  Wishlist_Item(db.Model, SerializerMixin):
     product = db.relationship('Product', back_populates='wishlist_items')
 
     user = db.relationship('User', back_populates='wishlist_items')
+
+    
     

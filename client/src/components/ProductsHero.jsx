@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PagesBackground from "../PagesBackground";
-import { Link } from 'react-router-dom';
 
 function ProductsHero() {
 

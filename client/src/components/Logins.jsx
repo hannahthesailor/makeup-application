@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoginsHero from "./LoginsHero";
+// import LoginRender from "./LoginRender";
 
 function Logins() {
 
@@ -7,6 +8,7 @@ function Logins() {
         return (
             <>
               <LoginsHero />
+              {/* <LoginRender /> */}
               
             </>
           );

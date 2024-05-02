@@ -1,19 +1,17 @@
-import React from "react";
-import PagesBackground from "../PagesBackground";
+import React, { useState, useEffect } from "react";
+import ReviewsHero from "./ReviewsHero";
+import ReviewsRender from "./ReviewsRender";
 
- const product = () => {
-    return(
-        <div>
-            <PagesBackground heading='Products:' />
-            <div className='bg-black/20 absolute top-0 left-0 w-full h-screen'/> 
-            <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
-                <div className='md:left-[10%] max-w-[1100px] m-auto absolute p-4 font-bold text-4xl md:text7xl drop-shadow-2xl'>
-                    <p>Reviews</p>
-                        <h1 className='font-serif text-xl md:tex4xl drop-shadow-2xl'>Love it? Hate it? Let us know below!</h1>
-                </div>
-            </div>
-        </div>
-    )
- }
+function Reviews() {
 
- export default product;
+
+        return (
+            <>
+              <ReviewsHero />
+              <ReviewsRender />
+              
+            </>
+          );
+        }
+
+export default Reviews;
