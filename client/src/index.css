@@ -9,3 +9,9 @@
     @apply border py-2 px-3 rounded-full
   }
 }
+
+@layer components {
+  .bg-primary {
+    background-color: #your-primary-color; /* Replace with your primary color value */
+  }
+}

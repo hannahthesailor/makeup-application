@@ -8,6 +8,12 @@ function LoginsHero(){
         password: ""
     })
 
+    const [username, SetUsername] = useState("")
+
+    function updateUsername(event){
+        SetUsername(event.target.value)
+    }
+
     const [notification, setNotification] = useState(null);
 
     function updateFormData(event) {
@@ -56,8 +62,7 @@ function LoginsHero(){
                  </div>
              )}
              <form onSubmit={handleSubmit}>
-                 <input type="text" name="username" placeholder="Username" value={formData.username} onChange={updateFormData} />
-                 {/* <input type="password" name="password" placeholder="Password" value={formData.password} onChange={updateFormData} /> */}
+                 <input onChange={updateFormData} type="text" name="username" placeholder="Username" className="text-black" value={formData.username} />
                  <button type="submit">Login</button>
              </form>
          </div>

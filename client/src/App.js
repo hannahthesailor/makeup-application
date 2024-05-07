@@ -9,6 +9,7 @@ import Reviews from './components/Reviews.jsx';
 import WishListItem from './components/WishListItems.jsx';
 import Logins from './components/Logins.jsx';
 import NewReviewForm from './components/NewReviewForm.jsx';
+import DeleteReviews from './components/DeleteReviews.jsx';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/wishListItems" element={<WishListItem />} />
           <Route path="/logins" element={<Logins />} />
           <Route path="/newreviewform" element={<NewReviewForm />} />
+          <Route path="/deletereviews" element={<DeleteReviews />} />
         </Routes>
       </div>
     </BrowserRouter>

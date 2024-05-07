@@ -26,7 +26,6 @@ function ProductsRender() {
 
     return (
         <div>
-                    {/* Render product data */}
                     <ul className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                         {products.map(product => (
                             <li key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -40,7 +39,7 @@ function ProductsRender() {
                         ))}
                          <div className="mt-4">
                          <Link to="/reviews">
-                            <button className='border py-2 px-4 rounded-full bg-white text-black hover:bg-gray-200'>Leave a Review</button>
+                            <button className='border py-2 px-4 rounded-full bg-white text-black hover:bg-gray-200'>Product Reviews</button>
                         </Link>
                     </div>
                     </ul>

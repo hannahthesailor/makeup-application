@@ -1,12 +1,7 @@
 from flask import request, make_response, jsonify, Flask, session
 from flask_restful import Resource
 from flask_cors import CORS
-# from flask_bcrypt import Bcrypt
 
-from flask_jwt_extended import create_access_token
-from werkzeug.security import check_password_hash
-
-# bcrypt = Bcrypt(app)
 
 
 # Local imports
@@ -33,11 +28,59 @@ class AllReviews(Resource):
     
     def post(self):
         try:
-            pass
-        except:
-            pass
-
+            data = request.json
+            
+            new_review = Review(
+                rating=data.get('rating'),
+                text=data.get('text'),
+                product_id=data.get('product_id'),
+                user_id=data.get('user_id')
+            )
+            
+            db.session.add(new_review)
+            db.session.commit()
+            
+            return new_review.to_dict(only=('id', 'rating', 'text', 'product_id', 'user_id')), 201
+        except Exception as e:
+            return {'error': str(e)}, 500
+        
 api.add_resource(AllReviews, '/reviews')
+
+class ReviewById(Resource):
+    def delete(self, review_id):
+        review = Review.query.get(review_id)
+        if not review:
+            return {'error': 'Review not found'}, 404
+        db.session.delete(review)
+        db.session.commit()
+        return {}, 204
+
+    def patch(self, review_id):
+        review = Review.query.get(review_id)
+        try:
+            review = Review.query.get(review_id)
+            if not review:
+                return {'error': 'Review not found'}, 404
+
+            data = request.json
+            if 'rating' in data:
+                # Check if the 'rating' value is an integer
+                if not isinstance(data['rating'], int):
+                    return {'error': 'Rating must be an integer'}, 400
+
+                review.rating = data['rating']
+            if 'text' in data:
+                review.text = data['text']
+
+            db.session.commit()
+            return review.to_dict(only=('id', 'rating', 'text', 'product_id', 'user_id')), 200
+
+        except Exception as e:
+            return {'error': str(e)}, 500
+
+api.add_resource(ReviewById, '/reviews/<int:review_id>')
+
+
 
 # users!
 class AllUsers(Resource):
@@ -70,7 +113,6 @@ class Login(Resource):
     def post(self):
         username = request.json.get('username')
 
-        # Query the User model to find the user by username
         user = User.query.filter(User.username == username).first()
 
         return make_response({"id": user.id, "name": user.name, "username": user.username}, 201) if user else make_response({"error": "User not found!"}, 401)

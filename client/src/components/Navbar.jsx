@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { HiMenuAlt3 } from 'react-icons/hi';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-
+import { Link } from 'react-router-dom';
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const handleNav = () => {
@@ -39,8 +38,11 @@ const Navbar = () => {
                         </li>
                     <li className='font-bold text-3xl p-8'>
                         <Link to="/Logins">Login</Link></li>
-                        <li className='font-bold text-3xl p-8'>
+
+                    <li className='font-bold text-3xl p-8'>
                         <Link to="/NewReviewForm">Leave A Review</Link></li>
+                        <li className='font-bold text-3xl p-8'>
+                        <Link to="/DeleteReviews">Delete Or Edit A Review</Link></li>
                 </ul>
             </div>
         </div>

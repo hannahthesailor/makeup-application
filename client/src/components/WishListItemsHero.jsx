@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AlternateBackground from "./AlternateBackground";
 
-function WishListItemsHero() {
+function WishListItemsHero({ loggedInUserId }) {
     const [wishlistItems, setWishlistItems] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ function WishListItemsHero() {
 
     const fetchWishlistItems = async () => {
         try {
-            const response = await fetch("http://localhost:5555/wishlist_items");
+            const response = await fetch(`http://localhost:5555/wishlist_items?user_id=${loggedInUserId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch wishlist items');
             }
@@ -24,32 +24,20 @@ function WishListItemsHero() {
     return (
         <div>
             <AlternateBackground heading='Wishlist:' />
-            <div className='bg-black/20 absolute top-0 left-0 w-full h-screen'/>
-            <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
-                <div className='md:left-[10%] max-w-[1100px] m-auto absolute p-4 font-bold text-4xl md:text-5xl lg:text-6xl drop-shadow-2xl'>
+            <div className='absolute top-0 left-0 w-full h-full flex flex-col justify-center text-white'>
+                <div className='max-w-[1100px] mx-auto p-4 font-bold text-4xl'>
                     <p>Wishlist</p>
-                    <h1 className='font-serif text-base md:text-3xl lg:text-4xl drop-shadow-2xl'>Everything you love for your next shopping trip!</h1>
-                    {/* Render wishlist table */}
-                    <table className="table-auto">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Product ID</th>
-                                <th>User ID</th>
-                                <th>Product Name</th>
-                                <th>Product Image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {wishlistItems.map(item => (
-                                <tr key={item.id}>
-                                    <td>{item.product_name}</td>
-                                    <td><img src={item.product_image} alt={item.product_name} /></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <h1 className='text-xl md:text-3xl lg:text-4xl mt-2'>Everything you love for your next shopping trip!</h1>
                 </div>
+            </div>
+            {/* Render wishlist items */}
+            <div className="grid grid-cols-2 gap-4 mt-4">
+                {wishlistItems.map((item, index) => (
+                    <div key={index} className="flex items-center">
+                        <img src={item.product_image} alt={item.product_name} className="w-24 h-24 mr-4" />
+                        <p>{item.product_name}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
